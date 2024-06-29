@@ -16,6 +16,14 @@ public class SimulationDisplayFrame extends JFrame {
         displayFrame(camera.render());
     }
 
+    public void render() {
+        displayFrame(camera.render());
+    }
+    public void step() {
+        simulation.step();
+        render();
+    }
+
     private void displayFrame(BufferedImage frame) {
         display.setIcon(new ImageIcon(frame));
     }

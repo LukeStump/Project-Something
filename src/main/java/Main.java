@@ -6,22 +6,32 @@ import org.dyn4j.world.World;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    private static SimulationDisplayFrame frame;
+
+    public static void main(String[] args) throws InterruptedException {
         World<Section> world = new World<>();
         setupWorld(world);
 
         Simulation simulation = new Simulation(world, new ArrayList<>());
 
-        Camera camera = new BasicCamera(simulation);
+        Camera camera = new TransformCamera(simulation);
 
-        SimulationDisplayFrame frame = new SimulationDisplayFrame(simulation, camera);
+        frame = new SimulationDisplayFrame(simulation, camera);
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
+
+        //Scanner reader = new Scanner(System.in);
+        while (true) {
+            Thread.sleep(10);
+            frame.step();
+        }
     }
+
     private static void setupWorld(World<Section> world) {
         // Ground
         Section ground = new Section();

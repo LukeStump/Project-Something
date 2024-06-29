@@ -8,6 +8,10 @@ import java.awt.geom.Ellipse2D;
 
 public class Section extends Body {
 
+    public void render(Graphics2D g) {
+        render(g,1);
+    }
+
     public void render(Graphics2D g, double scale) {
         // point radius
         final int pr = 4;

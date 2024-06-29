@@ -21,8 +21,8 @@ public class Simulation {
 
 
 
-    private void step() { // One step in the simulation
-
+    public void step() { // One step in the simulation
+        world.step(1);
     }
 
 }
