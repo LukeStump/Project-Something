@@ -1,26 +1,27 @@
 import org.dyn4j.geometry.Transform;
+import org.dyn4j.geometry.Translatable;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class TransformCamera extends Camera {
+public class TransformCamera extends Camera implements Translatable {
 
-    /** The transform that  **/
+    /** The transform from World coords to Camera coords **/
     private Transform transform;
 
     /** The width and height of the resulting image **/
-    private int width, height;
+    private final int width, height;
 
     /** The scale (zoom) in pixels per meter */
     private double scale;
 
     public TransformCamera(Simulation simulation) {
         this.transform = new Transform();
-        this.width = 512;
-        this.height = 512;
-        this.scale = 20.0;
+        this.width = 1024;
+        this.height = 1024;
+        this.scale = 50.0;
         setSimulation(simulation);
     }
 
@@ -76,11 +77,25 @@ public class TransformCamera extends Camera {
 
     @Override
     Vector2 toWorldCoordinates(Point cameraPoint) {
-        return null;
+        Vector2 out = new Vector2(cameraPoint.x/scale,cameraPoint.y/scale);
+        return transform.getInverseTransformed(out);
     }
 
     @Override
     Point toCameraCoordinates(Vector2 worldVector) {
-        return null;
+        Vector2 v = transform.getTransformed(worldVector);
+        return new Point((int)(v.x*scale),(int)(v.y*scale));
     }
+
+    @Override
+    public void translate(double x, double y) {
+        transform.translate(x*scale,y*scale);
+    }
+
+    @Override
+    public void translate(Vector2 vector) {
+        transform.translate(vector.copy().setMagnitude(vector.getMagnitude()*scale));
+    }
+
+
 }

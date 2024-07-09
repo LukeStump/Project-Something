@@ -107,13 +107,13 @@ public final class Graphics2DRenderer {
         g.setColor(getOutlineColor(color));
         g.draw(c);
 
-        // draw a line so that rotation is visible
-//        Line2D.Double l = new Line2D.Double(
-//                center.x * scale,
-//                center.y * scale,
-//                (center.x + radius) * scale,
-//                center.y * scale);
-//        g.draw(l);
+        //draw a line so that rotation is visible
+        Line2D.Double l = new Line2D.Double(
+                center.x * scale,
+                center.y * scale,
+                (center.x + radius) * scale,
+                center.y * scale);
+        g.draw(l);
     }
 
     /**
@@ -143,10 +143,10 @@ public final class Graphics2DRenderer {
         g.draw(p);
 
         // draw a line from the center to the first point
-        p = new Path2D.Double();
-        p.moveTo(polygon.getCenter().x * scale, polygon.getCenter().y * scale);
-        p.lineTo(vertices[0].x * scale, vertices[0].y * scale);
-        g.draw(p);
+//        p = new Path2D.Double();
+//        p.moveTo(polygon.getCenter().x * scale, polygon.getCenter().y * scale);
+//        p.lineTo(vertices[0].x * scale, vertices[0].y * scale);
+//        g.draw(p);
     }
 
     /**
@@ -368,6 +368,6 @@ public final class Graphics2DRenderer {
         return new Color(
                 (float)Math.random() * 0.5f + 0.5f,
                 (float)Math.random() * 0.5f + 0.5f,
-                (float)Math.random() * 0.5f + 0.5f);
+                (float)Math.random() * 0.5f + 0.5f );
     }
 }

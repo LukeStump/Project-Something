@@ -28,10 +28,10 @@ public class Section extends Body {
         g.transform(lt);
 
         // loop over all the body fixtures for this body
-        System.out.println("Section Rendering");
+        //System.out.println("Section Rendering");
         for (BodyFixture fixture : this.fixtures) {
             if (fixture instanceof Piece) ((Piece)fixture).render(g, scale);
-            else System.out.println("\tNon-Piece Fixture");
+            //else System.out.println("\tNon-Piece Fixture");
         }
         /*
         // draw a center point

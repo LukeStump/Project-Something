@@ -19,7 +19,7 @@ public class Piece  extends BodyFixture {
         Convex convex = getShape();
 
         // render the fixture
-        System.out.println("\tPiece Rendering");
+        //System.out.println("\tPiece Rendering");
         Graphics2DRenderer.render(g, convex, scale, color);
     }
 }

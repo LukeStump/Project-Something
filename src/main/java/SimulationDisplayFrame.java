@@ -23,6 +23,9 @@ public class SimulationDisplayFrame extends JFrame {
         simulation.step();
         render();
     }
+    public void update(double elapsedTime) {
+        simulation.update(elapsedTime);
+    }
 
     private void displayFrame(BufferedImage frame) {
         display.setIcon(new ImageIcon(frame));
